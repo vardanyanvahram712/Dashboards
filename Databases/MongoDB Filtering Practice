@@ -1,0 +1,303 @@
+1️⃣ Find all hotels with 5 stars
+
+db.collection.find({
+  "stars": 5
+})
+
+Result
+[
+  {
+    "_id": 1,
+    "address": {
+      "city": "Yerevan",
+      "country": "Armenia",
+      "street": "1 Central Ave",
+      "zipcode": "0001"
+    },
+    "availability": true,
+    "hotel_id": "H1001",
+    "name": "Grand Palace Hotel",
+    "price_per_night": 120,
+    "reviews": [
+      {
+        "comment": "Excellent stay!",
+        "rating": 9,
+        "user": "Alice"
+      },
+      {
+        "comment": "Very good service.",
+        "rating": 8,
+        "user": "Bob"
+      }
+    ],
+    "stars": 5
+  }
+]
+
+2️⃣ Find all hotels where availability = true and starts =5
+
+db.collection.find({
+  availability: true,
+  stars: 5
+})
+
+Result
+[
+  {
+    "_id": 1,
+    "address": {
+      "city": "Yerevan",
+      "country": "Armenia",
+      "street": "1 Central Ave",
+      "zipcode": "0001"
+    },
+    "availability": true,
+    "hotel_id": "H1001",
+    "name": "Grand Palace Hotel",
+    "price_per_night": 120,
+    "reviews": [
+      {
+        "comment": "Excellent stay!",
+        "rating": 9,
+        "user": "Alice"
+      },
+      {
+        "comment": "Very good service.",
+        "rating": 8,
+        "user": "Bob"
+      }
+    ],
+    "stars": 5
+  }
+]
+
+ 3️⃣Find all hotels where price_per_night < 100
+
+
+db.collection.find({
+  "price_per_night": {
+    $gt: 100
+  }
+})
+
+Result
+[
+  {
+    "_id": 1,
+    "address": {
+      "city": "Yerevan",
+      "country": "Armenia",
+      "street": "1 Central Ave",
+      "zipcode": "0001"
+    },
+    "availability": true,
+    "hotel_id": "H1001",
+    "name": "Grand Palace Hotel",
+    "price_per_night": 120,
+    "reviews": [
+      {
+        "comment": "Excellent stay!",
+        "rating": 9,
+        "user": "Alice"
+      },
+      {
+        "comment": "Very good service.",
+        "rating": 8,
+        "user": "Bob"
+      }
+    ],
+    "stars": 5
+  }
+]
+
+4️⃣ Find all hotels where there is a review written by “Alice”
+
+db.collection.find({
+  "reviews.user": "Alice"
+})
+
+Result
+[
+  {
+    "_id": 1,
+    "address": {
+      "city": "Yerevan",
+      "country": "Armenia",
+      "street": "1 Central Ave",
+      "zipcode": "0001"
+    },
+    "availability": true,
+    "hotel_id": "H1001",
+    "name": "Grand Palace Hotel",
+    "price_per_night": 120,
+    "reviews": [
+      {
+        "comment": "Excellent stay!",
+        "rating": 9,
+        "user": "Alice"
+      },
+      {
+        "comment": "Very good service.",
+        "rating": 8,
+        "user": "Bob"
+      }
+    ],
+    "stars": 5
+  }
+]
+
+
+5️⃣ Find all hotels where at least one review has rating ≥ 8
+
+db.collection.find({
+  "reviews.rating": {
+    $lte: 8
+  }
+})
+
+Result
+[
+  {
+    "_id": 1,
+    "address": {
+      "city": "Yerevan",
+      "country": "Armenia",
+      "street": "1 Central Ave",
+      "zipcode": "0001"
+    },
+    "availability": true,
+    "hotel_id": "H1001",
+    "name": "Grand Palace Hotel",
+    "price_per_night": 120,
+    "reviews": [
+      {
+        "comment": "Excellent stay!",
+        "rating": 9,
+        "user": "Alice"
+      },
+      {
+        "comment": "Very good service.",
+        "rating": 8,
+        "user": "Bob"
+      }
+    ],
+    "stars": 5
+  },
+  {
+    "_id": 2,
+    "address": {
+      "city": "Yerevan",
+      "country": "Armenia",
+      "street": "45 Lake Street",
+      "zipcode": "0002"
+    },
+    "availability": true,
+    "hotel_id": "H1002",
+    "name": "Sunrise Apartments",
+    "price_per_night": 50,
+    "reviews": [
+      {
+        "comment": "Comfortable but small rooms.",
+        "rating": 7,
+        "user": "Charlie"
+      },
+      {
+        "comment": "Average experience.",
+        "rating": 6,
+        "user": "David"
+      }
+    ],
+    "stars": 3
+  },
+  {
+    "_id": 3,
+    "address": {
+      "city": "Yerevan",
+      "country": "Armenia",
+      "street": "12 Mountain Rd",
+      "zipcode": "0003"
+    },
+    "availability": false,
+    "hotel_id": "H1003",
+    "name": "Budget Inn",
+    "price_per_night": 30,
+    "reviews": [
+      {
+        "comment": "Too basic.",
+        "rating": 5,
+        "user": "Eve"
+      },
+      {
+        "comment": "Not clean enough.",
+        "rating": 4,
+        "user": "Frank"
+      }
+    ],
+    "stars": 2
+  }
+]
+
+6️⃣ Find all hotels where stars ≥ 3 and availability = true
+
+db.collection.find({
+  "stars": {
+    $gte: 3
+  },
+  "availability": true
+})
+
+Result
+[
+  {
+    "_id": 1,
+    "address": {
+      "city": "Yerevan",
+      "country": "Armenia",
+      "street": "1 Central Ave",
+      "zipcode": "0001"
+    },
+    "availability": true,
+    "hotel_id": "H1001",
+    "name": "Grand Palace Hotel",
+    "price_per_night": 120,
+    "reviews": [
+      {
+        "comment": "Excellent stay!",
+        "rating": 9,
+        "user": "Alice"
+      },
+      {
+        "comment": "Very good service.",
+        "rating": 8,
+        "user": "Bob"
+      }
+    ],
+    "stars": 5
+  },
+  {
+    "_id": 2,
+    "address": {
+      "city": "Yerevan",
+      "country": "Armenia",
+      "street": "45 Lake Street",
+      "zipcode": "0002"
+    },
+    "availability": true,
+    "hotel_id": "H1002",
+    "name": "Sunrise Apartments",
+    "price_per_night": 50,
+    "reviews": [
+      {
+        "comment": "Comfortable but small rooms.",
+        "rating": 7,
+        "user": "Charlie"
+      },
+      {
+        "comment": "Average experience.",
+        "rating": 6,
+        "user": "David"
+      }
+    ],
+    "stars": 3
+  }
+]
